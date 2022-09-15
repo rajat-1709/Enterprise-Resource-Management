@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome TO  Apex Traders</h1>
+</div>
+
+<a asp-action="Create" asp-controller="Bills"><button type="button" class="btn btn-primary btn-lg btn-block">Bill Generate</button></a>
+<br />
+<a asp-action="Create" asp-controller="Buyers"><button type="button" class="btn btn-dark btn-lg btn-block">Customer Register</button></a>
+<br />
+<a asp-action="Index" asp-controller="Buyers"><button type="button" class="btn btn-primary btn-lg btn-block">Customer Information</button></a>
+<br />
+<a asp-action="Index" asp-controller="Bills"><button type="button" class="btn btn-primary btn-lg btn-block">Total sales</button></a>
+<br />
+<a asp-action="Create" asp-controller="Items"><button type="button" class="btn btn-dark btn-lg btn-block">Inventory Management</button></a>
+<br />
+<a asp-action="Index" asp-controller="Items"><button type="button" class="btn btn-primary btn-lg btn-block">Active Products</button></a>

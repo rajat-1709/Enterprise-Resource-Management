@@ -1,0 +1,202 @@
+﻿@model demoerpnxt.Models.Bill
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var itprice = 0;
+            var itquant = 0;
+
+            $('#bid').on('change', function () {
+                var r = $("#bid").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Bills/AjaxMethodforbuyer",
+                    data: { "id":r },
+                    success: function (response) {
+                        $("#bname").val(response)
+                        //alert("Hello: " + response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            })
+            $('#iid').on('change', function () {
+                var r = $("#iid").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Bills/AjaxMethodforitem",
+                    data: { "id": r },
+                    success: function (response) {
+                       // console.log(response);
+                        itprice = response.itemprice;
+                        itquant = response.itemquant;
+                       // alert(itprice)
+                        $("#iname").val(response.itemname)
+
+                     //alert("Hello: " + response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            })
+            $('#sid').on('click', function () {
+                var r = $("#sid").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Bills/AjaxMethodforseller",
+                    data: { "id": r },
+                    success: function (response) {
+                        $("#sname").val(response)
+                        //alert("Hello: " + response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            })
+            $('#itemqnt').on('change', function () {
+                var r = $('#itemqnt').val();
+                if (r > itquant) {
+                    alert("Only " + itquant + " are availabel");
+                    location.reload();
+                }
+                else {
+                    //alert(r * itprice);
+                    console.log(r * itprice);
+                    $('#tamount').val(r * itprice);
+                    //alert(r)
+                    var r = parseInt($('#pdamount').val(), 10);
+                    var k = parseInt($('#tamount').val(), 10);
+                    console.log(k - r);
+                    //alert(r * itprice);
+                    if (r == k || k < r) {
+                        $('#ramount').val("0");
+
+                    }
+                    else {
+                        $('#ramount').val(k - r);
+                    }
+                }
+              
+            })
+
+            $('#pdamount').on('change', function () {
+               
+                var r = parseInt($('#pdamount').val(),10);
+                var k = parseInt($('#tamount').val(),10);
+                console.log(k - r);
+                //alert(r * itprice);
+                if (r == k || k < r) {
+                    $('#ramount').val("0");
+                }
+                else {
+                   // $('#ramount').val("0");
+                    $('#ramount').val(k - r);
+                }
+                //alert(r)
+            })
+
+
+                })
+
+    </script>
+</head>
+   
+   
+
+<h1>Create</h1>
+
+<h4>Bill</h4>
+<hr />
+<h1> @ViewData["Sellersname"] </h1>
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Buyersid" class="control-label"></label>
+                <select id="bid" asp-for="Buyersid" class="form-control" asp-items="ViewBag.Buyersid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buyersname" class="control-label"></label>
+                <input id="bname" asp-for="Buyersname" class="form-control" />
+                <span asp-validation-for="Buyersname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buydate" class="control-label"></label>
+                <input asp-for="Buydate" class="form-control" />
+                <span asp-validation-for="Buydate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sellersid" class="control-label"></label>
+                <select id="sid" asp-for="Sellersid" class="form-control" asp-items="ViewBag.Sellersid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sellersname" class="control-label"></label>
+                <input id="sname" asp-for="Sellersname" class="form-control" asp-item="ViewBag.Sellersname" />
+                <span asp-validation-for="Sellersname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsid" class="control-label"></label>
+                <select id="iid" asp-for="Itemsid" class="form-control" asp-items="ViewBag.Itemsid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsname" class="control-label"></label>
+                <input id="iname" asp-for="Itemsname" class="form-control" />
+                <span asp-validation-for="Itemsname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsquant" class="control-label"></label>
+                <input id="itemqnt" asp-for="Itemsquant" class="form-control" />
+                <span asp-validation-for="Itemsquant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Totalamount" class="control-label"></label>
+                <input id="tamount" asp-for="Totalamount" class="form-control" />
+                <span asp-validation-for="Totalamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paidamount" class="control-label"></label>
+                <input id="pdamount" asp-for="Paidamount" class="form-control" />
+                <span asp-validation-for="Paidamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remainingamount" class="control-label"></label>
+                <input id="ramount" asp-for="Remainingamount" class="form-control" />
+                <span asp-validation-for="Remainingamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

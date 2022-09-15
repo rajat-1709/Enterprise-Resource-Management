@@ -1,0 +1,84 @@
+﻿@model demoerpnxt.Models.Bill
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Bill</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Buyersname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Buyersname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Buydate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Buydate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Itemsname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Itemsname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Itemsquant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Itemsquant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sellersname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sellersname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Totalamount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Totalamount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Paidamount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Paidamount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Remainingamount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Remainingamount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Buyers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Buyers.Buyerid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Items)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Items.Itemid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sellers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sellers.Sellerid)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Billno">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,106 @@
+﻿@model demoerpnxt.Models.Buyer 
+
+@{
+    ViewData["Title"] = "Details";
+    
+}
+
+<h1> Customer Details</h1>
+
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <p>Customer Name</p>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Buyername)
+        </dd>
+    </dl>
+</div>
+
+<div>
+
+    Total Paid By Customer    <button type="button" class="btn btn-outline-dark">₹ @ViewBag.TotalPaidamount </button>
+   
+    <div style="float:right;">
+    Total Not Paid By Customer  <button type="button" class="btn btn-outline-danger">₹ @ViewBag.TotalReaminingamount </button>
+    </div>
+    <br />
+    <br />
+
+</div>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bill No</th>
+
+                <th>Customer Name</th>
+
+                <th>Buy Date</th>
+          
+                <th>Item Name</th>
+          
+                <th>Item Quant</th>
+            
+                <th>Seller Name</th>
+           
+                <th>Total Amount</th>
+            
+                <th>Paid Amount</th>
+           
+                <th>Remaining Amount</th>
+            </tr>
+        </thead>
+        @foreach (var item in ViewBag.getbuyer)
+        {
+           
+            <tr>
+                <td>
+                    @item.Billno
+                </td>
+           
+                <td>
+                    @item.Buyersname
+                </td>
+
+                <td>
+                    @item.Buydate
+                </td>
+            
+                <td>
+                    @item.Itemsname
+                </td>
+           
+                <td>
+                    @item.Itemsquant
+                </td>
+            
+                <td>
+                    @item.Sellersname
+                </td>
+           
+                <td>
+                    ₹ @item.Totalamount
+                </td>
+           
+                <td>
+                    ₹ @item.Paidamount
+                </td>
+            
+                <td>
+                    ₹ @item.Remainingamount
+                </td>
+            </tr>
+        }
+    </table>
+
+    
+    </div>
+
+<div>
+    <a asp-action ="Edit" asp-route-id="@Model.Buyerid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

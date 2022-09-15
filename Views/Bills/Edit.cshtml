@@ -1,0 +1,84 @@
+﻿@model demoerpnxt.Models.Bill
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Bill</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Billno" />
+            <div class="form-group">
+                <label asp-for="Buyersid" class="control-label"></label>
+                <select asp-for="Buyersid" class="form-control" asp-items="ViewBag.Buyersid"></select>
+                <span asp-validation-for="Buyersid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buyersname" class="control-label"></label>
+                <input asp-for="Buyersname" class="form-control" />
+                <span asp-validation-for="Buyersname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buydate" class="control-label"></label>
+                <input asp-for="Buydate" class="form-control" />
+                <span asp-validation-for="Buydate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsid" class="control-label"></label>
+                <select asp-for="Itemsid" class="form-control" asp-items="ViewBag.Itemsid"></select>
+                <span asp-validation-for="Itemsid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsname" class="control-label"></label>
+                <input asp-for="Itemsname" class="form-control" />
+                <span asp-validation-for="Itemsname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Itemsquant" class="control-label"></label>
+                <input asp-for="Itemsquant" class="form-control" />
+                <span asp-validation-for="Itemsquant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sellersid" class="control-label"></label>
+                <select asp-for="Sellersid" class="form-control" asp-items="ViewBag.Sellersid"></select>
+                <span asp-validation-for="Sellersid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sellersname" class="control-label"></label>
+                <input asp-for="Sellersname" class="form-control" />
+                <span asp-validation-for="Sellersname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Totalamount" class="control-label"></label>
+                <input asp-for="Totalamount" class="form-control" />
+                <span asp-validation-for="Totalamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paidamount" class="control-label"></label>
+                <input asp-for="Paidamount" class="form-control" />
+                <span asp-validation-for="Paidamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remainingamount" class="control-label"></label>
+                <input asp-for="Remainingamount" class="form-control" />
+                <span asp-validation-for="Remainingamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
